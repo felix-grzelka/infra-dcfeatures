@@ -1,0 +1,10 @@
+{
+    "name": "1Password CLI",
+    "id": "onepassword-cli",
+    "version": "1.0.0",
+    "description": "1Password CLI",
+    "options": {},
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

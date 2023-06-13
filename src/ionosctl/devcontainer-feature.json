@@ -1,0 +1,21 @@
+{
+    "name": "IONOS Cloud Control",
+    "id": "ionosctl",
+    "version": "1.0.0",
+    "description": "A feature to install IONOS cloud control 'ionosctl'",
+    "options": {
+        "version": {
+            "type": "string",
+            "enum": [
+                "latest",
+                "none"
+            ],
+            "default": "latest",
+            "description": "Choose the version."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils",
+        "ghcr.io/devcontainers-contrib/features/curl-apt-get"
+    ]
+}

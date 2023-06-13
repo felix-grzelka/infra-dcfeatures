@@ -1,0 +1,20 @@
+{
+    "name": "hostctl",
+    "id": "hostctl",
+    "version": "1.0.0",
+    "description": "Install hostctl feature",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "1.1.4",
+                "1.1.3"
+            ],
+            "default": "1.1.4",
+            "description": "Select a version"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
