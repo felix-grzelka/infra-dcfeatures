@@ -1,21 +1,21 @@
 {
-    "name": "My Favorite Color",
-    "id": "color",
-    "version": "1.0.3",
-    "description": "A feature to remind you of your favorite color",
+    "name": "IONOS Cloud Control",
+    "id": "ionosctl",
+    "version": "1.0.0",
+    "description": "A feature to install IONOS cloud control 'ionosctl'",
     "options": {
-        "favorite": {
+        "version": {
             "type": "string",
             "enum": [
-                "red",
-                "gold",
-                "green"
+                "latest",
+                "none"
             ],
-            "default": "red",
-            "description": "Choose your favorite color."
+            "default": "latest",
+            "description": "Choose the version."
         }
     },
     "installsAfter": [
-        "ghcr.io/devcontainers/features/common-utils"
+        "ghcr.io/devcontainers/features/common-utils",
+        "ghcr.io/devcontainers-contrib/features/curl-apt-get"
     ]
 }

@@ -9,29 +9,28 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-apt_get_update()
+apt_update()
 {
     if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
-        echo "Running apt-get update..."
-        apt-get update -y
+        echo "Updating th e distribution with apt..."
+        apt update -y
     fi
 }
 
 # Checks if packages are installed and installs them if not
-check_packages() {
+ensure_packages() {
     if ! dpkg -s "$@" > /dev/null 2>&1; then
-        apt_get_update
+        apt_update
         apt-get -y install --no-install-recommends "$@"
     fi
 }
 
 export DEBIAN_FRONTEND=noninteractive
-
-# Source /etc/os-release to get OS info
+# Retrieve OS info
 . /etc/os-release
 
 # Install dependencies
-check_packages apt-transport-https curl ca-certificates gnupg2 dirmngr
+ensure_packages apt-transport-https curl ca-certificates gnupg2 dirmngr
 # Import key safely (new 'signed-by' method rather than deprecated apt-key approach) and install
 curl -sSL https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor > /usr/share/keyrings/1password-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" > /etc/apt/sources.list.d/1password.list

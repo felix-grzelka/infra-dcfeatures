@@ -7,9 +7,7 @@ A feature to remind you of your favorite color
 
 ```json
 "features": {
-    "ghcr.io/devcontainers/feature-starter/color:1": {
-        "version": "latest"
-    }
+    "ghcr.io/dbildungsplattform/infra-dcfeatures/onepassword-cli:1": {}
 }
 ```
 
@@ -17,7 +15,7 @@ A feature to remind you of your favorite color
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| favorite | Choose your favorite color. | string | red |
+| | | | |
 
 
 

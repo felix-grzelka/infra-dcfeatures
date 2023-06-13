@@ -1,29 +1,42 @@
 #!/bin/sh
 set -e
 
-echo "Activating feature 'hello'"
+echo "Activating feature 'hostctl'"
+echo "The provided version is: ${VERSION}"
+export HOSTCTL_VERSION=$VERSION
 
-GREETING=${GREETING:-undefined}
-echo "The provided greeting is: $GREETING"
+# Clean up
+rm -rf /var/lib/apt/lists/*
 
-# The 'install.sh' entrypoint script is always executed as the root user.
-#
-# These following environment variables are passed in by the dev container CLI.
-# These may be useful in instances where the context of the final 
-# remoteUser or containerUser is useful.
-# For more details, see https://containers.dev/implementors/features#user-env-var
-echo "The effective dev container remoteUser is '$_REMOTE_USER'"
-echo "The effective dev container remoteUser's home directory is '$_REMOTE_USER_HOME'"
+if [ "$(id -u)" -ne 0 ]; then
+    echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
+    exit 1
+fi
 
-echo "The effective dev container containerUser is '$_CONTAINER_USER'"
-echo "The effective dev container containerUser's home directory is '$_CONTAINER_USER_HOME'"
+apt_update()
+{
+    if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
+        echo "Updating th e distribution with apt..."
+        apt update -y
+    fi
+}
 
-cat > /usr/local/bin/hello \
-<< EOF
-#!/bin/sh
-RED='\033[0;91m'
-NC='\033[0m' # No Color
-echo "\${RED}${GREETING}, \$(whoami)!\${NC}"
-EOF
+# Checks if packages are installed and installs them if not
+ensure_packages() {
+    if ! dpkg -s "$@" > /dev/null 2>&1; then
+        apt_update
+        apt-get -y install --no-install-recommends "$@"
+    fi
+}
 
-chmod +x /usr/local/bin/hello
+export DEBIAN_FRONTEND=noninteractive
+# Retrieve OS info
+. /etc/os-release
+
+# Install dependencies
+ensure_packages apt-transport-https wget ca-certificates
+
+wget "https://github.com/guumaster/hostctl/releases/download/v${HOSTCTL_VERSION}/hostctl_${HOSTCTL_VERSION}_linux_amd64.deb"
+pwd
+ls -la $PWD
+dpkg -i "${PWD}/hostctl_${HOSTCTL_VERSION}_linux_amd64.deb"
