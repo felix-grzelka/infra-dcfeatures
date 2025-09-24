@@ -16,6 +16,7 @@ jobs:
           - ionosctl
           - hostctl
           - onepassword-cli
+          - zsh-history
         baseImage:
           - debian:latest
           - ubuntu:latest
