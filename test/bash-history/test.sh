@@ -18,7 +18,11 @@ check "validate bash history HISTFILESIZE" cat /root/.bashrc | grep 'HISTFILESIZ
 check "validate bash history HISTFILE" cat /root/.bashrc | grep 'HISTFILE=/root/.history/bash_history'
 check "validate bash history HISTTIMEFORMAT" cat /root/.bashrc | grep 'HISTTIMEFORMAT=%F, %T '
 
-check "validate bash history env var HISTFILE" bash -c "echo $HISTFILE | grep '/root/.history/bash_history'"
+check "validate bash history env var HISTFILE=$HISTFILE" bash -c "echo $HISTFILE | grep '/root/.history/bash_history'"
+check "validate bash history env var PROMPT_COMMAND=$PROMPT_COMMAND" bash -c "echo $PROMPT_COMMAND | grep 'history -a'"
+check "validate bash history env var HISTSIZE=$HISTSIZE" bash -c "echo $HISTSIZE | grep '-1'"
+check "validate bash history env var HISTFILESIZE=$HISTFILESIZE" bash -c "echo $HISTFILESIZE | grep '-1'"
+check "validate bash history env var HISTTIMEFORMAT=$HISTTIMEFORMAT" bash -c "echo $HISTFILESIZE | grep '%F, %T '"
 
 # Report result
 # If any of the checks above exited with a non-zero exit code, the test will fail.
