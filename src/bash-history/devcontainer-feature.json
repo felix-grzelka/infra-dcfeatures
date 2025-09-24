@@ -22,7 +22,7 @@
         "BASH_HISTTIMEFORMAT": {
             "type": "string",
             "description": "The value of HISTTIMEFORMAT for bash",
-            "default": "\"%F, %T \""
+            "default": "%F, %T "
         },
         "BASH_PROMPT_COMMAND": {
             "type": "string",
