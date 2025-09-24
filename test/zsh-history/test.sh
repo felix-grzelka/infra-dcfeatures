@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 
 set -e
@@ -18,6 +18,13 @@ check "validate zsh history HISTFILESIZE" cat /root/.zshrc | grep 'HISTFILESIZE=
 check "validate zsh history HIST_IGNORE_ALL_DUPS" cat /root/.zshrc | grep 'setopt HIST_IGNORE_ALL_DUPS'
 check "validate zsh history INC_APPEND_HISTORY" cat /root/.zshrc | grep 'setopt INC_APPEND_HISTORY'
 check "validate zsh history HISTTIMEFORMAT" cat /root/.zshrc | grep 'HISTTIMEFORMAT=%F, %T '
+
+check "validate zsh history env var HISTFILE" echo $HISTFILE | grep '/root/.history/zsh_history'
+check "validate zsh history HISTSIZE" echo $HISTSIZE | grep '1000000000'
+# check "validate zsh history HISTFILESIZE" cat /root/.zshrc | grep 'HISTFILESIZE=1000000000'
+# check "validate zsh history HIST_IGNORE_ALL_DUPS" cat /root/.zshrc | grep 'setopt HIST_IGNORE_ALL_DUPS'
+# check "validate zsh history INC_APPEND_HISTORY" cat /root/.zshrc | grep 'setopt INC_APPEND_HISTORY'
+# check "validate zsh history HISTTIMEFORMAT" cat /root/.zshrc | grep 'HISTTIMEFORMAT=%F, %T '
 
 # Report result
 # If any of the checks above exited with a non-zero exit code, the test will fail.
