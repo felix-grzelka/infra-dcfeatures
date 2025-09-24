@@ -17,10 +17,16 @@ jobs:
           - hostctl
           - onepassword-cli
           - zsh-history
+          - bash-history
         baseImage:
           - debian:latest
           - ubuntu:latest
           - mcr.microsoft.com/devcontainers/base:ubuntu
+        exclude:
+          - features: zsh-history
+            node: mcr.microsoft.com/devcontainers/base:ubuntu
+          - features: bash-history
+            node: mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
       - uses: actions/checkout@v3
 
