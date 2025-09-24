@@ -27,7 +27,7 @@
         "BASH_PROMPT_COMMAND": {
             "type": "string",
             "description": "The value of PROMPT_COMMAND for bash",
-            "default": "\"history -a\""
+            "default": "history -a"
         }
     },
     "installsAfter": [
