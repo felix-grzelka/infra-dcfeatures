@@ -18,11 +18,7 @@ check "validate bash history HISTFILESIZE" cat /root/.bashrc | grep 'HISTFILESIZ
 check "validate bash history HISTFILE" cat /root/.bashrc | grep 'HISTFILE=/root/.history/bash_history'
 check "validate bash history HISTTIMEFORMAT" cat /root/.bashrc | grep 'HISTTIMEFORMAT=%F, %T '
 
-check "validate bash history env var HISTFILE" bash -c 'echo $HISTFILE'
-check "validate bash 2 history env var HISTFILE" echo $HISTFILE
-check "validate bash 3 history env var HISTFILE" echo $HISTFILE | grep '/root/.history/bash_history'
-# check "validate zsh history HISTSIZE" zsh -c 'echo $HISTSIZE'
-# | grep '1000000000'
+check "validate bash history env var HISTFILE" bash -c "echo $HISTFILE | grep '/root/.history/bash_history'"
 
 # Report result
 # If any of the checks above exited with a non-zero exit code, the test will fail.
