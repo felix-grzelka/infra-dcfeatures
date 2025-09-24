@@ -22,7 +22,7 @@
         "ZSH_HISTTIMEFORMAT": {
             "type": "string",
             "description": "The value of HISTTIMEFORMAT for zsh",
-            "default": "\"%F, %T \""
+            "default": "%F, %T "
         }
     },
     "installsAfter": [
