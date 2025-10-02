@@ -1,7 +1,7 @@
 {
     "name": "zsh-history",
     "id": "zsh-history",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "zsh history configuration feature",
     "options": {
         "ZSH_RCFILE": {
