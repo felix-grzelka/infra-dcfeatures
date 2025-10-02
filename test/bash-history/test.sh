@@ -16,7 +16,7 @@ check "validate bash history PROMPT_COMMAND" cat /root/.bashrc | grep 'PROMPT_CO
 check "validate bash history HISTSIZE" cat /root/.bashrc | grep 'HISTSIZE=-1'
 check "validate bash history HISTFILESIZE" cat /root/.bashrc | grep 'HISTFILESIZE=-1'
 check "validate bash history HISTFILE" cat /root/.bashrc | grep 'HISTFILE=/root/.history/bash_history'
-check "validate bash history HISTTIMEFORMAT" cat /root/.bashrc | grep 'HISTTIMEFORMAT=%F, %T '
+check "validate bash history HISTTIMEFORMAT" cat /root/.bashrc | grep 'HISTTIMEFORMAT="%F, %T "'
 
 # check "validate bash history env var HISTFILE=$HISTFILE" bash -c "echo $HISTFILE | grep '/root/.history/bash_history'"
 # check "validate bash history env var PROMPT_COMMAND=$PROMPT_COMMAND" bash -c "echo $PROMPT_COMMAND | grep 'history -a'"
