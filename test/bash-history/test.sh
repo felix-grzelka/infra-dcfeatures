@@ -12,7 +12,7 @@ source dev-container-features-test-lib
 # The 'check' command comes from the dev-container-features-test-lib. Syntax is...
 # check <LABEL> <cmd> [args...]
 
-check "validate bash history PROMPT_COMMAND" cat /root/.bashrc | grep 'PROMPT_COMMAND=history -a'
+check "validate bash history PROMPT_COMMAND" cat /root/.bashrc | grep 'PROMPT_COMMAND="history -a"'
 check "validate bash history HISTSIZE" cat /root/.bashrc | grep 'HISTSIZE=-1'
 check "validate bash history HISTFILESIZE" cat /root/.bashrc | grep 'HISTFILESIZE=-1'
 check "validate bash history HISTFILE" cat /root/.bashrc | grep 'HISTFILE=/root/.history/bash_history'
